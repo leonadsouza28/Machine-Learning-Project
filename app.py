@@ -6,11 +6,19 @@ import joblib
 # ✅ CUSTOM STYLING WITH BACKGROUND IMAGE
 st.markdown("""
     <style>
-        body {
+        [data-testid="stAppViewContainer"] {
             background-image: url("https://images.unsplash.com/photo-1588776814546-ec6c7d6c0d4d?auto=format&fit=crop&w=1350&q=80");
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
+        }
+
+        [data-testid="stHeader"] {
+            background: rgba(255, 255, 255, 0.0);
+        }
+
+        [data-testid="stSidebar"] {
+            background: rgba(255, 255, 255, 0.3);
         }
 
         .main {
@@ -44,6 +52,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+
 # Load the saved model and scaler
 model = joblib.load('loan_approval_model.pkl')
 scaler = joblib.load('scaler.pkl')
@@ -51,11 +60,11 @@ scaler = joblib.load('scaler.pkl')
 st.set_page_config(page_title="Loan Approval Prediction", layout="centered")
 
 # App title
-st.markdown("<h1 class='title'>🏦 Loan Approval Prediction App</h1>", unsafe_allow_html=True)
+st.markdown("<h1 class='title'>🏦 Loan Approval Prediction </h1>", unsafe_allow_html=True)
 st.markdown("<p class='subtitle'>This app predicts whether a loan application will be approved or not using a trained Logistic Regression model.</p>", unsafe_allow_html=True)
 
 # User input form
-st.header("🔍 Applicant Information")
+st.header("Enter Detailed Information.........")
 
 # Collect inputs
 Gender = st.selectbox("Gender", [' ','Male', 'Female'])
