@@ -1,40 +1,74 @@
-# app.py
-
 import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
 
-# Load the saved model and scaler
-model = joblib.load('loan_approval_model.pkl')
-scaler = joblib.load('scaler.pkl')
+# Load model and scaler
+model = joblib.load("loan_approval_model.pkl")
+scaler = joblib.load("scaler.pkl")
 
-st.set_page_config(page_title="Loan Approval Prediction", layout="centered")
+# Page configuration
+st.set_page_config(
+    page_title="Loan Approval Predictor",
+    layout="centered",
+    page_icon="🏦"
+)
 
-# App title
-st.title("🏦 Loan Approval Prediction App")
-st.write("This app predicts whether a loan application will be approved or not using a trained Logistic Regression model.")
+# --- Custom Styling ---
+st.markdown("""
+    <style>
+        .main { background-color: #F4F6F6; padding: 20px; border-radius: 10px; }
+        .stButton>button {
+            color: white;
+            background-color: #0066cc;
+            border-radius: 8px;
+            padding: 10px 24px;
+        }
+        .stButton>button:hover {
+            background-color: #004d99;
+        }
+        .title {
+            font-size: 36px;
+            font-weight: bold;
+            color: #003366;
+        }
+        .subtitle {
+            font-size: 18px;
+            color: #666666;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
-# User input form
-st.header("🔍 Applicant Information")
+# --- Title & Subtitle ---
+st.markdown('<div class="main">', unsafe_allow_html=True)
+st.markdown('<div class="title">🏦 Loan Approval Prediction App</div>', unsafe_allow_html=True)
+st.markdown('<div class="subtitle">Predict whether a loan will be approved based on applicant information.</div>', unsafe_allow_html=True)
 
-# Collect inputs
-Gender = st.selectbox("Gender", ['Male', 'Female'])
-Married = st.selectbox("Married", ['Yes', 'No'])
-Dependents = st.selectbox("Number of Dependents", ['0', '1', '2', '3+'])
-Education = st.selectbox("Education", ['Graduate', 'Not Graduate'])
-Self_Employed = st.selectbox("Self Employed", ['Yes', 'No'])
-ApplicantIncome = st.number_input("Applicant Income", min_value=0)
-CoapplicantIncome = st.number_input("Coapplicant Income", min_value=0)
-LoanAmount = st.number_input("Loan Amount (in thousands)", min_value=1)
-Loan_Amount_Term = st.number_input("Loan Term (in days)", min_value=1)
-Credit_History = st.selectbox("Credit History", ['1', '0'])
-Property_Area = st.selectbox("Property Area", ['Urban', 'Semiurban', 'Rural'])
+# --- Input Form ---
+st.markdown("### 🔍 Enter Applicant Details")
 
-# Prepare input for prediction
-if st.button("Predict Loan Approval"):
+with st.form(key="input_form"):
+    col1, col2 = st.columns(2)
 
-    # Convert input into DataFrame
+    with col1:
+        Gender = st.selectbox("Gender", [' ','Male', 'Female'])
+        Married = st.selectbox("Married", [' ','Yes', 'No'])
+        Dependents = st.selectbox("Number of Dependents", [' ','0', '1', '2', '3+'])
+        Education = st.selectbox("Education", [' ','Graduate', 'Not Graduate'])
+        Self_Employed = st.selectbox("Self Employed", [' ','Yes', 'No'])
+
+    with col2:
+        ApplicantIncome = st.number_input("Applicant Income", min_value=0)
+        CoapplicantIncome = st.number_input("Coapplicant Income", min_value=0)
+        LoanAmount = st.number_input("Loan Amount (in thousands)", min_value=1)
+        Loan_Amount_Term = st.number_input("Loan Term (in days)", min_value=1)
+        Credit_History = st.selectbox("Credit History", ['1', '0'])
+        Property_Area = st.selectbox("Property Area", ['Urban', 'Semiurban', 'Rural'])
+
+    submit = st.form_submit_button("🔮 Predict Loan Approval")
+
+# --- Prediction Logic ---
+if submit:
     input_data = pd.DataFrame({
         'ApplicantIncome': [ApplicantIncome],
         'CoapplicantIncome': [CoapplicantIncome],
@@ -52,15 +86,15 @@ if st.button("Predict Loan Approval"):
         'Property_Area_Urban': [1 if Property_Area == 'Urban' else 0]
     })
 
-    # Scale input
     input_scaled = scaler.transform(input_data)
-
-    # Predict
     prediction = model.predict(input_scaled)[0]
     prediction_proba = model.predict_proba(input_scaled)[0][1]
 
-    # Output
+    # Result display
+    st.markdown("### 📊 Prediction Result")
     if prediction == 1:
-        st.success(f"✅ Loan will be Approved (Confidence: {prediction_proba:.2%})")
+        st.success(f"✅ Loan will be Approved\n\nConfidence: **{prediction_proba:.2%}**")
     else:
-        st.error(f"❌ Loan will NOT be Approved (Confidence: {1 - prediction_proba:.2%})")
+        st.error(f"❌ Loan will NOT be Approved\n\nConfidence: **{(1 - prediction_proba):.2%}**")
+
+st.markdown("</div>", unsafe_allow_html=True)
