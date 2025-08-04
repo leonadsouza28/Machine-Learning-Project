@@ -6,19 +6,11 @@ import joblib
 # ✅ CUSTOM STYLING WITH BACKGROUND IMAGE
 st.markdown("""
     <style>
-        [data-testid="stAppViewContainer"] {
-            background-image: url("https://images.unsplash.com/photo-1588776814546-ec6c7d6c0d4d?auto=format&fit=crop&w=1350&q=80");
+        body {
+            background-image: url("https://raw.githubusercontent.com/leonadsouza28/Machine-Learning-Project/main/LP%20image.jpeg");
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
-        }
-
-        [data-testid="stHeader"] {
-            background: rgba(255, 255, 255, 0.0);
-        }
-
-        [data-testid="stSidebar"] {
-            background: rgba(255, 255, 255, 0.3);
         }
 
         .main {
