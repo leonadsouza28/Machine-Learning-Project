@@ -14,11 +14,11 @@ st.markdown("""
         }
 
         [data-testid="stHeader"] {
-            background: rgba(255, 255, 255, 0.0);
+            background: rgba(255, 255, 255, 0);
         }
 
         [data-testid="stSidebar"] {
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.5);
         }
 
         .main {
@@ -51,6 +51,7 @@ st.markdown("""
         }
     </style>
 """, unsafe_allow_html=True)
+
 
 
 
