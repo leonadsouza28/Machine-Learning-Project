@@ -86,7 +86,15 @@ with st.form(key="input_form"):
                 <h4 style="color: #003366;">🎯 Ready to Predict?</h4>
             </div>
         """, unsafe_allow_html=True)
-        predict = st.button("🎯 Predict Loan Approval")
+
+        # Form for submitting
+        with st.form(key="predict_form"):
+            submit = st.form_submit_button("🎯 Predict Loan Approval")
+
+        if submit:
+            # call your prediction function here
+            st.success("✅ Prediction made successfully!")
+
 
 # --- Prediction Logic ---
 if predict:
