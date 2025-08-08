@@ -60,7 +60,7 @@ st.markdown('<div class="title">LOAN APPROVAL PREDICTION</div>', unsafe_allow_ht
 st.markdown('<div class="subtitle">Predict whether a loan will be approved based on applicant information.</div>', unsafe_allow_html=True)
 
 # --- Input Form ---
-st.markdown("### 🔍 Enter Applicant Details")
+st.markdown("### Enter Applicant Details")
 
 with st.form(key="input_form"):
     col1, col2 = st.columns(2)
@@ -83,14 +83,15 @@ with st.form(key="input_form"):
     with st.container():
         st.markdown("""
             <div style="background-color: #dbe9ff; padding: 20px; border-radius: 10px; border: 1px solid #0066cc;">
-                <h4 style="color: #003366;">🎯 Ready to Predict?</h4>
+                <h4 style="color: #003366;">Ready to Predict?</h4>
             </div>
         """, unsafe_allow_html=True)
 
-        predict = st.button("🎯 Predict Loan Approval")
+        predict = st.form_submit_button("Predict Loan Approval")
+
 
         if predict:
-            st.success("✅ Prediction made successfully!")
+            st.success("Prediction made successfully!")
 
 
 
