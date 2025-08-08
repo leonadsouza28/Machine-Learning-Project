@@ -7,7 +7,7 @@ import joblib
 st.markdown("""
     <style>
         body {
-            background-image: url("https://raw.githubusercontent.com/leonadsouza28/Machine-Learning-Project/main/LP%20image.jpeg");
+            background-image: url("https://images.unsplash.com/photo-1588776814546-ec6c7d6c0d4d?auto=format&fit=crop&w=1350&q=80");
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -43,6 +43,7 @@ st.markdown("""
         }
     </style>
 """, unsafe_allow_html=True)
+
 
 
 # Load the saved model and scaler
