@@ -17,7 +17,11 @@ st.set_page_config(
 # --- Custom Styling ---
 st.markdown("""
     <style>
-        .main { background-color: #F4F6F6; padding: 20px; border-radius: 10px; }
+        .main {
+            background-color: #F4F6F6;
+            padding: 20px;
+            border-radius: 10px;
+        }
         .stButton>button {
             color: white;
             background-color: #0066cc;
@@ -35,6 +39,17 @@ st.markdown("""
         .subtitle {
             font-size: 18px;
             color: #666666;
+        }
+        /* 🔵 Make input boxes blue */
+        div[data-baseweb="select"] > div {
+            background-color: #dbe9ff !important;
+            border: 1px solid #0066cc !important;
+            border-radius: 6px !important;
+        }
+        input[type="number"], input[type="text"] {
+            background-color: #dbe9ff !important;
+            border: 1px solid #0066cc !important;
+            border-radius: 6px !important;
         }
     </style>
 """, unsafe_allow_html=True)
