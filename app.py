@@ -80,7 +80,14 @@ with st.form(key="input_form"):
         Credit_History = st.selectbox("Credit History", ['','1', '0'])
         Property_Area = st.selectbox("Property Area", ['','Urban', 'Semiurban', 'Rural'])
 
-    submit = st.form_submit_button("Predict Loan Approval")
+    with st.container():
+    st.markdown("""
+        <div style="background-color: #dbe9ff; padding: 20px; border-radius: 10px; border: 1px solid #0066cc;">
+            <h4 style="color: #003366;">Ready to Predict?</h4>
+        </div>
+    """, unsafe_allow_html=True)
+    predict = st.button("🎯 Predict Loan Approval")
+
 
 # --- Prediction Logic ---
 if st.button("Predict Loan Approval"):
